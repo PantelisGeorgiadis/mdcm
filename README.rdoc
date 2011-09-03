@@ -8,7 +8,7 @@ Licensed and distributable under the terms of the LGPL 2.1 license: http://opens
 
 == Summary
 
-This is a Windows Phone 7.1 (Mango) focused fork of the Anders Gustafsson's port to Silverlight (https://github.com/cureos/mdcmmain) of the mdcm project (https://github.com/rcd/mdcm).
+This is a Windows Phone 7.1 (Mango) focused fork of the Anders Gustafsson's port to Silverlight (https://github.com/cureos/mdcm) of the mdcm project (https://github.com/rcd/mdcm).
 
 === Windows Phone 7.1
 
