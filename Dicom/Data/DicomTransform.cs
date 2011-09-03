@@ -21,10 +21,12 @@
 
 using System;
 using System.Collections.Generic;
+#if !WINDOWS_PHONE
 using System.Data;
 using System.Data.Odbc;
 using System.Data.Sql;
 using System.Data.SqlClient;
+#endif
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -35,8 +37,9 @@ namespace Dicom.Data {
 	public interface IDicomTransformRule {
 		void Transform(DcmDataset dataset);
 	}
-
+#if !WINDOWS_PHONE
 	[Serializable]
+#endif
 	public class DicomTransform : IDicomTransformRule {
 		#region Private Members
 		private List<IDicomTransformRule> _transformRules;
@@ -87,9 +90,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Remove an element from a DICOM dataset.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class RemoveElementDicomTransformRule : IDicomTransformRule {
+#endif
+    public class RemoveElementDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTagMask _mask;
 		#endregion
@@ -121,9 +127,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Sets the value of a DICOM element.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class SetValueDicomTransformRule : IDicomTransformRule {
+#endif
+    public class SetValueDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private string _value;
@@ -150,9 +159,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Maps the value of a DICOM element to a value.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class MapValueDicomTransformRule : IDicomTransformRule {
+#endif
+    public class MapValueDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private string _match;
@@ -182,9 +194,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Copies the value of a DICOM element to another DICOM element.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class CopyValueDicomTransformRule : IDicomTransformRule {
+#endif
+    public class CopyValueDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _src;
 		private DicomTag _dst;
@@ -213,9 +228,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Performs a regular expression replace operation on a DICOM element value.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class RegexDicomTransformRule : IDicomTransformRule {
+#endif
+    public class RegexDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private string _pattern;
@@ -248,9 +266,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Prefix the value of a DICOM element.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class PrefixDicomTransformRule : IDicomTransformRule {
+#endif
+    public class PrefixDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private string _prefix;
@@ -280,9 +301,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Append the value of a DICOM element.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class AppendDicomTransformRule : IDicomTransformRule {
+#endif
+    public class AppendDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private string _append;
@@ -318,9 +342,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Trims a string from the beginning and end of a DICOM element value.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class TrimStringDicomTransformRule : IDicomTransformRule {
+#endif
+    public class TrimStringDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private string _trim;
@@ -358,9 +385,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Trims whitespace or a set of characters from the beginning and end of a DICOM element value.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class TrimCharactersDicomTransformRule : IDicomTransformRule {
+#endif
+    public class TrimCharactersDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private char[] _trim;
@@ -419,9 +449,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Pads a DICOM element value.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class PadStringDicomTransformRule : IDicomTransformRule {
+#endif
+    public class PadStringDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private char _paddingChar;
@@ -457,9 +490,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Truncates a DICOM element value.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class TruncateDicomTransformRule : IDicomTransformRule {
+#endif
+    public class TruncateDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private int _length;
@@ -495,9 +531,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Splits a DICOM element value and then formats the a string from the resulting array.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class SplitFormatDicomTransformRule : IDicomTransformRule {
+#endif
+    public class SplitFormatDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		private char[] _seperators;
@@ -531,9 +570,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Changes the case of a DICOM element value to all upper case.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class ToUpperDicomTransformRule : IDicomTransformRule {
+#endif
+    public class ToUpperDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		#endregion
@@ -561,9 +603,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Changes the case of a DICOM element value to all lower case.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class ToLowerDicomTransformRule : IDicomTransformRule {
+#endif
+    public class ToLowerDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		#endregion
@@ -591,9 +636,12 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Generates a new UID for a DICOM element.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class GenerateUidDicomTransformRule : IDicomTransformRule {
+#endif
+    public class GenerateUidDicomTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private DicomTag _tag;
 		#endregion
@@ -624,9 +672,11 @@ namespace Dicom.Data {
 
 	/// <summary>
 	/// Updates a DICOM dataset based on a database query.
-	/// </summary>
+    /// </summary>
+#if !WINDOWS_PHONE
 	[Serializable]
-	public class DatabaseQueryTransformRule : IDicomTransformRule {
+    public class DatabaseQueryTransformRule : IDicomTransformRule
+    {
 		#region Private Members
 		private string _connectionString;
 		private DatabaseType _dbType;
@@ -686,7 +736,7 @@ namespace Dicom.Data {
 				if (_dbType == DatabaseType.Odbc)
 					connection = new OdbcConnection(_connectionString);
 				else if (_dbType == DatabaseType.MsSql)
-					connection = new SqlConnection(_connectionString);
+                    connection = new SqlConnection(_connectionString);
 
 				using (IDbCommand command = connection.CreateCommand()) {
 					command.Connection = connection;
@@ -731,4 +781,5 @@ namespace Dicom.Data {
 		}
 		#endregion
 	}
+#endif
 }

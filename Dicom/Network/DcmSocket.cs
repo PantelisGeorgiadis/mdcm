@@ -234,7 +234,9 @@ namespace Dicom.Network {
 
         static DcmTcpSocket()
         {
+#if !WINDOWS_PHONE            
             AccessPolicyProtocol = SocketClientAccessPolicyProtocol.Tcp;
+#endif
         }
 
         public DcmTcpSocket()
@@ -246,8 +248,9 @@ namespace Dicom.Network {
 
         #region AUTO-IMPLEMENTED PROPERTIES
 
+#if !WINDOWS_PHONE
         public static SocketClientAccessPolicyProtocol AccessPolicyProtocol { get; set; }
-
+#endif
         #endregion
 
         #region Overrides of DcmSocket
@@ -332,8 +335,10 @@ namespace Dicom.Network {
             SocketAsyncEventArgs args = new SocketAsyncEventArgs
                                             {
                                                 UserToken = _socket,
-                                                RemoteEndPoint = remoteEP,
-                                                SocketClientAccessPolicyProtocol = AccessPolicyProtocol
+                                                RemoteEndPoint = remoteEP
+#if !WINDOWS_PHONE
+                                                ,SocketClientAccessPolicyProtocol = AccessPolicyProtocol
+#endif
                                             };
             args.Completed += OnConnect;
 

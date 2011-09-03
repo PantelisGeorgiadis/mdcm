@@ -2989,6 +2989,7 @@ namespace Dicom.Data {
 		/// <param name="filename"></param>
 		/// <param name="publicOnly"></param>
 		/// <param name="privateOnly"></param>
+#if !WINDOWS_PHONE       
 		public static void ExportDictionary(string filename, bool includePublic, bool includePrivate) {
 			StringBuilder sb = new StringBuilder();
 
@@ -3020,11 +3021,12 @@ namespace Dicom.Data {
 
 			File.WriteAllText(filename, sb.ToString());
 		}
-
+#endif
 		/// <summary>
 		/// Internal use
 		/// </summary>
 		/// <param name="filename"></param>
+#if !WINDOWS_PHONE        
 		public static void ImportDictionary(string filename) {
 			lock (Lock) {
 #if SILVERLIGHT
@@ -3078,7 +3080,7 @@ namespace Dicom.Data {
 		/// <summary>
 		/// Internal use
 		/// </summary>
-		/// <param name="filename"></param>
+		/// <param name="filename"></param>        
 		public static void ImportDcmtkPrivateDictionary(string filename) {
 			lock (Lock) {
 #if SILVERLIGHT
@@ -3121,5 +3123,7 @@ namespace Dicom.Data {
 				}
 			}
 		}
-	}
+#endif
+    }
+
 }

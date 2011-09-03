@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
+#if !WINDOWS_PHONE
 namespace Dicom.HL7 {
 	/// <summary>
 	/// Callback for received HL7v2 message.
@@ -126,3 +127,4 @@ namespace Dicom.HL7 {
 		#endregion
 	}
 }
+#endif

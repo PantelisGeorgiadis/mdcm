@@ -57,10 +57,12 @@ namespace Dicom.Codec {
 				throw new DicomCodecException(String.Format("BitsAllocated={0} is not supported!", bitsAllocated));
 		}
 
+#if !WINDOWS_PHONE
 		public static void DumpFrameToDisk(DcmDataset data, int frame, string file) {
 			DcmPixelData pixelData = new DcmPixelData(data);
 			byte[] pixels = pixelData.GetFrameDataU8(frame);
 			File.WriteAllBytes(file, pixels);
 		}
+#endif
 	}
 }

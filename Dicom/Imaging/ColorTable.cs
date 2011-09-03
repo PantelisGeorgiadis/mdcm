@@ -64,7 +64,7 @@ namespace Dicom.Imaging {
 			Array.Reverse(clone);
 			return clone;
 		}
-
+#if !WINDOWS_PHONE
 		public static Color[] LoadLUT(string file) {
 			try {
 				byte[] data = File.ReadAllBytes(file);
@@ -93,7 +93,7 @@ namespace Dicom.Imaging {
 			for (int i = 0; i < 256; i++) fs.WriteByte(lut[i].B);
 			fs.Close();
 		}
-
+#endif
 #if !(SILVERLIGHT || WPF)
 		public static void Apply(Image image, Color[] lut) {
 			ColorPalette palette = image.Palette;
