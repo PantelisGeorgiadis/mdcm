@@ -16,9 +16,10 @@ Project WP71.Dicom provides a Windows Phone 7.1 port of the Dicom class librarie
 
 * adoption of Anders Gustafsson's Silverlight changes to Dicom class libraries
 * introduction of the CGetClient class, a fully functional C-GET SCU class. Currently, Windows Phone 7.1 platform does not provide a way for the device to act as a socket server therefore is unable to play the role of a C-STORE SCP. The only way to tranfer images to the device is through a C-GET SCU operation.
+* introduction of the CFindSeriesClient, CFindSeriesQuery and CFindSeriesResponse classes as a series only C-FIND SCU operation
 * introduction of a Silverlight-based RenderImage method for the CompositeGraphic class employing the WriteableBitmapBlitExtensions class (WriteableBitmapEx - Silverlight WriteableBitmap extensions, Copyright (c) 2009-2010 Bill Reiss, Rene Schulte and WriteableBitmapEx Contributors) 
 * exclusion of File.* methods
-* additional exclusion of serialization functionality
+* exclusion of serialization functionality
 * exclusion of DatabaseQueryTransformRule class
 * exclusion of HL7v2Server class since TcpListener class is not supported
 * exclusion of the unsupported SocketAsyncEventArgs.SocketClientAccessPolicyProtocol property
