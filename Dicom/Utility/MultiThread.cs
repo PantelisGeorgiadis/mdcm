@@ -51,7 +51,11 @@ namespace Dicom.Utility {
 				}
 			};
 
+#if !WINDOWS_PHONE
 			int threads = Environment.ProcessorCount;
+#else
+            int threads = 1;
+#endif
 			WaitHandle[] handles = new WaitHandle[threads];
 			for (int i = 0; i < threads; i++) {
 #if SILVERLIGHT
@@ -65,7 +69,14 @@ namespace Dicom.Utility {
 				handles[i] = process.BeginInvoke(ProcessCallback, process).AsyncWaitHandle;
 #endif
 			}
+#if !WINDOWS_PHONE
 			WaitHandle.WaitAll(handles);
+#else
+            foreach (WaitHandle handle in handles)
+            {
+                handle.WaitOne();
+            }
+#endif
 		}
 
 		public delegate void ForEachDelegate<T>(T item);
@@ -87,7 +98,11 @@ namespace Dicom.Utility {
 				}
 			};
 
+#if !WINDOWS_PHONE
 			int threads = Environment.ProcessorCount;
+#else
+            int threads = 1;
+#endif
 			WaitHandle[] handles = new WaitHandle[threads];
 			for (int i = 0; i < threads; i++) {
 #if SILVERLIGHT
@@ -101,7 +116,14 @@ namespace Dicom.Utility {
 				handles[i] = process.BeginInvoke(ProcessCallback, process).AsyncWaitHandle;
 #endif
 			}
+#if !WINDOWS_PHONE
 			WaitHandle.WaitAll(handles);
+#else
+            foreach (WaitHandle handle in handles)
+            {
+                handle.WaitOne();
+            }
+#endif
 		}
 	}
 }
