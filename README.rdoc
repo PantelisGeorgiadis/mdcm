@@ -25,6 +25,7 @@ Project WP71.Dicom provides a Windows Phone 7.1 port of the Dicom class librarie
 * exclusion of the unsupported SocketAsyncEventArgs.SocketClientAccessPolicyProtocol property
 * exclusion of the Jpeg codec projects
 * exclusion of Environment.ProcessorCount property and WaitHandle.WaitAll method since they are not supported by the platform
+* introduction of an alternative dictionary sorting method in SortedList class
 
 === Silverlight ((c) 2011 Anders Gustafsson, Cureos AB)
 
