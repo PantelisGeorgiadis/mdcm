@@ -45,12 +45,32 @@ namespace System.Collections.Generic
         public new void Add(TKey key, TValue value)
         {
             base.Add(key, value);
+#if !WINDOWS_PHONE
             this.OrderBy(kv => kv.Key, mComparer);
+#else
+            Sort(this, mComparer);
+#endif
         }
 
         public void RemoveAt(int i)
         {
             Remove(this.ElementAt(i).Key);
+        }
+
+        private void Sort(Dictionary<TKey, TValue> dictionary, IComparer<TKey> iComparer)
+        {
+            TKey[] keys = new TKey[Count];
+            TValue[] vals = new TValue[Count];
+            Keys.CopyTo(keys, 0);
+            Values.CopyTo(vals, 0);
+
+            Array.Sort<TKey, TValue>(keys, vals, iComparer);
+
+            dictionary.Clear();
+            for (int i = 0; i < keys.Length; i++)
+            {
+                dictionary.Add(keys[i], vals[i]);
+            }
         }
 
         #endregion
