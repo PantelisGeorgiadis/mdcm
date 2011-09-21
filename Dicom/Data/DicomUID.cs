@@ -103,6 +103,8 @@ namespace Dicom.Data {
 							}
 							_instanceRootUid = Generate(Implementation.ClassUID, Environment.TickCount);
 						}
+#elif WINDOWS_PHONE
+                        _instanceRootUid = Generate(Implementation.ClassUID, Environment.TickCount);
 #endif
                     }
 				}
