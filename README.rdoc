@@ -26,6 +26,7 @@ Project WP71.Dicom provides a Windows Phone 7.1 port of the Dicom class librarie
 * exclusion of the Jpeg codec projects
 * exclusion of Environment.ProcessorCount property and WaitHandle.WaitAll method since they are not supported by the platform
 * introduction of an alternative dictionary sorting method in SortedList class
+* introduction of the PrintClient class, a fully functional PRINT SCU class. The DcmFilmSession, DcmFilmBox and DcmImageBox classes were taken from Colby Dillion's mdcm-printscp (https://github.com/rcd/mdcm-printscp) project
 
 === Silverlight ((c) 2011 Anders Gustafsson, Cureos AB)
 

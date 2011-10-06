@@ -393,6 +393,10 @@
       <Link>SL\WriteableBitmapTransformationExtensions.cs</Link>
     </Compile>
     <Compile Include="Network\Client\CGetClient.cs" />
+    <Compile Include="Network\Client\Print\DcmFilmBox.cs" />
+    <Compile Include="Network\Client\Print\DcmFilmSession.cs" />
+    <Compile Include="Network\Client\Print\DcmImageBox.cs" />
+    <Compile Include="Network\Client\Print\PrintClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SL\WriteableBitmapBlitExtensions.cs" />
   </ItemGroup>
