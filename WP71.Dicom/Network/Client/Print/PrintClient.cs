@@ -51,6 +51,11 @@ namespace Dicom.Network.Client
             get { return _dataset.GetString(DicomTags.PrinterStatus, null); }
         }
 
+        public string PrinterStatusInfo
+        {
+            get { return _dataset.GetString(DicomTags.PrinterStatusInfo, null); }
+        }
+
         public string PrinterName
         {
             get { return _dataset.GetString(DicomTags.PrinterName, null); }
@@ -245,34 +250,6 @@ namespace Dicom.Network.Client
         ///   <term>STANDARD\C,R</term>
         ///   <description>film contains equal size rectangular image boxes with R rows of image 
         ///   boxes and C columns of image boxes; C and R are integers.</description>
-        /// </item>
-        /// <item>
-        ///   <term>ROW\R1,R2,R3, etc.</term>
-        ///   <description>film contains rows with equal size rectangular image boxes with R1 
-        ///   image boxes in the first row, R2 image boxes in second row, R3 image boxes in third 
-        ///   row, etc.; R1, R2, R3, etc. are integers.</description>
-        /// </item>
-        /// <item>
-        ///   <term>COL\C1,C2,C3, etc.</term>
-        ///   <description>film contains columns with equal size rectangular image boxes with C1 
-        ///   image boxes in the first column, C2 image boxes in second column, C3 image boxes in 
-        ///   third column, etc.; C1, C2, C3, etc. are integers.</description>
-        /// </item>
-        /// <item>
-        ///   <term>SLIDE</term>
-        ///   <description>film contains 35mm slides; the number of slides for a particular film 
-        ///   size is configuration dependent.</description>
-        /// </item>
-        /// <item>
-        ///   <term>SUPERSLIDE</term>
-        ///   <description>film contains 40mm slides; the number of slides for a particular film 
-        ///   size is configuration dependent.</description>
-        /// </item>
-        /// <item>
-        ///   <term>CUSTOM\i</term>
-        ///   <description>film contains a customized ordering of rectangular image boxes; i identifies 
-        ///   the image display format; the definition of the image display formats is defined in the 
-        ///   Conformance Statement; i is an integer.</description>
         /// </item>
         /// </list>
         /// </remarks>
@@ -562,6 +539,7 @@ namespace Dicom.Network.Client
                 {
                     List<DicomTag> attributes = new List<DicomTag>();
                     attributes.Add(DicomTags.PrinterStatus);
+                    attributes.Add(DicomTags.PrinterStatusInfo);
                     attributes.Add(DicomTags.PrinterName);
                     attributes.Add(DicomTags.Manufacturer);
                     attributes.Add(DicomTags.ManufacturersModelName);
@@ -673,7 +651,7 @@ namespace Dicom.Network.Client
                             if (filmBox.BasicImageBoxes.Count > 0)
                             {
                                 int imageBoxIndex = 0;
-                                int imagesPerFilmbox = CalculateImagesPreFilmBox();
+                                int imagesPerFilmbox = CalculateImagesPerFilmBox();
                                 foreach (DcmImageBox imageBox in filmBox.BasicImageBoxes)
                                 {
                                     if (imagesPerFilmbox * filmBoxIndex + imageBoxIndex < _files.Count)
@@ -802,7 +780,7 @@ namespace Dicom.Network.Client
             SendNCreateRequest(pcid, NextMessageID(), DcmFilmSession.SOPClassUID, _filmSession.SOPInstanceUID, _filmSession.Dataset);
         }
 
-        private int CalculateImagesPreFilmBox()
+        private int CalculateImagesPerFilmBox()
         {
             int cols = 0, rows = 0;
 
@@ -834,7 +812,7 @@ namespace Dicom.Network.Client
             if (imageCount == 0)
                 return 0;
 
-            int imagesPerFilmbox = CalculateImagesPreFilmBox();
+            int imagesPerFilmbox = CalculateImagesPerFilmBox();
             if (imagesPerFilmbox == 0)
                 return 0;
 
@@ -894,6 +872,7 @@ namespace Dicom.Network.Client
             }
             catch (Exception)
             {
+                // On exception just ignore this imagebox and leave it blank
             }
         }
         #endregion
