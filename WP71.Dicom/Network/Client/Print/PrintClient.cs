@@ -588,7 +588,7 @@ namespace Dicom.Network.Client
                 {
                     if (status == DcmStatus.Success)
                     {
-                        int filmBoxesCount = CalculateRequiredImageBoxes();
+                        int filmBoxesCount = CalculateRequiredFilmBoxes();
                         if (filmBoxesCount == 0)
                         {
                             SendReleaseRequest();
@@ -629,9 +629,10 @@ namespace Dicom.Network.Client
                     if (status == DcmStatus.Success)
                     {
                         DcmFilmBox filmBox = _filmSession.FindFilmBox(affectedInstance);
-                        int filmBoxIndex = _filmSession.BasicFilmBoxes.IndexOf(filmBox);
                         if (filmBox != null)
-                        {                         
+                        {
+                            int filmBoxIndex = _filmSession.BasicFilmBoxes.IndexOf(filmBox);
+
                             DcmItemSequence referencedImageBoxSequenceList = null;
                             referencedImageBoxSequenceList = dataset.GetSQ(DicomTags.ReferencedImageBoxSequence);
                             if (referencedImageBoxSequenceList != null)
@@ -805,7 +806,7 @@ namespace Dicom.Network.Client
             return cols * rows;
         }
 
-        private int CalculateRequiredImageBoxes()
+        private int CalculateRequiredFilmBoxes()
         {
             int imageCount = _files.Count;
 
