@@ -136,11 +136,17 @@ namespace Dicom.Data {
 			} else {
 				length += 4; // length
 			}
-			foreach (DcmItemSequenceItem item in SequenceItems) {
-				length += item.CalculateWriteLength(syntax, options);
-			}
-			if (!Flags.IsSet(options, DicomWriteOptions.ExplicitLengthSequence))
-				length += 4 + 4; // Sequence Delimitation Item
+
+            if (SequenceItems.Count != 0)
+            {
+                foreach (DcmItemSequenceItem item in SequenceItems)
+                {
+                    length += item.CalculateWriteLength(syntax, options);
+                }
+                if (!Flags.IsSet(options, DicomWriteOptions.ExplicitLengthSequence))
+                    length += 4 + 4; // Sequence Delimitation Item
+            }
+
 			return length;
 		}
 
