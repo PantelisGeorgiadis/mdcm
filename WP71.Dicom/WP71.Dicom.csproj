@@ -392,6 +392,10 @@
     <Compile Include="..\SL.Dicom\SL\WriteableBitmapTransformationExtensions.cs">
       <Link>SL\WriteableBitmapTransformationExtensions.cs</Link>
     </Compile>
+    <Compile Include="Data\Dicomdir\DicomDirectory.cs" />
+    <Compile Include="Data\Dicomdir\DicomFileFormatEx.cs" />
+    <Compile Include="Data\Dicomdir\DirectoryRecordCollection.cs" />
+    <Compile Include="Data\Dicomdir\DirectoryRecordSequenceItem.cs" />
     <Compile Include="Network\Client\CGetClient.cs" />
     <Compile Include="Network\Client\Print\DcmFilmBox.cs" />
     <Compile Include="Network\Client\Print\DcmFilmSession.cs" />

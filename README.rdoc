@@ -16,7 +16,7 @@ Project WP71.Dicom provides a Windows Phone 7.1 port of the Dicom class librarie
 
 * adoption of Anders Gustafsson's Silverlight changes to Dicom class libraries
 * introduction of the CGetClient class, a fully functional C-GET SCU class. Currently, Windows Phone 7.1 platform does not provide a way for the device to act as a socket server therefore is unable to play the role of a C-STORE SCP. The only way to tranfer images to the device is through a C-GET SCU operation
-* introduction of the CFindSeriesClient, CFindSeriesQuery and CFindSeriesResponse classes as a series only C-FIND SCU operation
+* introduction of the CFindSeriesClient, CFindSeriesQuery and CFindSeriesResponse classes as a series only C-FIND SCU operation provider
 * introduction of a Silverlight-based RenderImage method for the CompositeGraphic class employing the WriteableBitmapBlitExtensions class (WriteableBitmapEx - Silverlight WriteableBitmap extensions, Copyright (c) 2009-2010 Bill Reiss, Rene Schulte and WriteableBitmapEx Contributors)
 * exclusion of File.* methods
 * exclusion of serialization functionality
@@ -27,6 +27,7 @@ Project WP71.Dicom provides a Windows Phone 7.1 port of the Dicom class librarie
 * exclusion of Environment.ProcessorCount property and WaitHandle.WaitAll method since they are not supported by the platform
 * introduction of an alternative dictionary sorting method in SortedList class
 * introduction of the PrintClient class, a fully functional PRINT SCU class. The DcmFilmSession, DcmFilmBox and DcmImageBox classes were taken from Colby Dillion's mdcm-printscp (https://github.com/rcd/mdcm-printscp) project
+* introduction of the DicomDirectory, DirectoryRecordCollection and DirectoryRecordSequenceItem classes. Taken from the clearcanvas source code (http://www.clearcanvas.ca/) and ported to mDCM these classes provide Dicomdir read/write support
 
 === Silverlight ((c) 2011 Anders Gustafsson, Cureos AB)
 
