@@ -136,7 +136,6 @@ namespace Dicom.Data {
 			} else {
 				length += 4; // length
 			}
-
             if (SequenceItems.Count != 0)
             {
                 foreach (DcmItemSequenceItem item in SequenceItems)
@@ -146,7 +145,6 @@ namespace Dicom.Data {
                 if (!Flags.IsSet(options, DicomWriteOptions.ExplicitLengthSequence))
                     length += 4 + 4; // Sequence Delimitation Item
             }
-
 			return length;
 		}
 
